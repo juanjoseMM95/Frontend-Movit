@@ -1,0 +1,60 @@
+<div class="container">
+
+    <form [formGroup]="formularioGroup"> 
+
+        <h1> <strong>¡Cotiza la tuya!</strong></h1><br>
+        
+        <label for="Modelo">Selecciona un modelo</label>
+        <select name="Modelo" class="entrance1" formControlName ="Modelo">
+            <option value="">--</option>
+            <option value="musso">Musso</option>
+            <option value="mussoGrand">Musso Grand</option>
+            <option value="rexton">Rexton</option>
+            <option value="korando">Korando</option>
+            <option value="tivoli">Tivoli</option>
+        </select><br>
+        
+        <label>Nombre completo</label>
+        <input type="text" name="NombreCompleto" class="entrance1"  formControlName ="NombreCompleto" >
+           
+        <label>Correo</label>
+        <input type="email" name="Correo" class="entrance1"  formControlName ="Correo" >
+        <br>
+        <label for="Telefono">Número de celular</label>
+        <input type="text" pattern="[0-9]+" name="Telencefono" class="entrance1" formControlName ="Telefono"><br>
+
+        <div style="width: 75%;">
+            <section id="col1">
+                <label for="Dpto">Departamento </label>
+                <select name="Dpto" class="entrance2"  (change)="buscarCiudad($event)">
+                    <option disabled>Seleccione</option>
+                       <option *ngFor="let depat of Departamentos" >
+                           {{depat.departamento}}
+                       </option> 
+
+
+                </select>
+            </section>
+
+            <section id="col2">
+                <label for="lblCiudades"> Ciudad </label><br>
+                        
+                <select name="Ciudad" class="entrance2"  formControlName ="Ciudad">
+                    <option  disabled>selecione</option>
+                    <option [value]="ciudad.ciudad" *ngFor="let ciudad of listCiudades">
+
+                        {{ciudad.ciudad}}
+                    </option>
+                </select>
+            </section>
+        </div>
+
+        <div>
+            <input type="checkbox" name="lblTerminos">
+            <label style="font-size: small;" for="lblTerminos">Acepto la política de Tratamiento de Datos Personales</label>
+        </div><br>
+        
+        <button (click)="submit()">Enviar datos</button>
+
+    </form>
+</div>
